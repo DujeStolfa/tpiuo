@@ -28,6 +28,6 @@ async def main():
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
-    print("START")
+    print("START APP")
     loop.run_until_complete(main())
-    print("STOP")
+    print("STOP APP")
