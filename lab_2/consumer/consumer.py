@@ -22,7 +22,7 @@ async def on_event(partition_context, event):
     )
 
     json_body = event.body_as_json(encoding="UTF-8")
-    for objava in json_body["data"]["children"]:
+    for objava in json_body:
         # Stvori folder
         dt = datetime.utcfromtimestamp(objava["data"]["created_utc"])
         new_dir = dt.strftime("%Y/%m/%d/%H/%M")
@@ -50,6 +50,6 @@ async def main():
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
-    print("START APP...")
+    print("START APP!")
     loop.run_until_complete(main())
     print("STOP APP!")
