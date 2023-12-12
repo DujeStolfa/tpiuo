@@ -5,7 +5,7 @@ on:
     branches: 
       - "main"
     paths: 
-      - '**.py'
+      - 'lab_2/producer/producer.py'
 jobs:
   editorconfig:
     runs-on: ubuntu-20.04
