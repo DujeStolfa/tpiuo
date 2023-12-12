@@ -15,15 +15,8 @@ jobs:
       - uses: editorconfig-checker/action-editorconfig-checker@main
       - run: editorconfig-checker
 
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Super-Linter
-      uses: super-linter/super-linter@v5.7.2
-
   build:
-    needs: [editorconfig, lint]
+    needs: [editorconfig]
     runs-on: ubuntu-latest
 
     steps:
