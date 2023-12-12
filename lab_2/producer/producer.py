@@ -1,3 +1,4 @@
+from time import sleep
 import asyncio
 import requests
 import requests.auth
@@ -35,21 +36,31 @@ async def run():
         "Authorization": f"bearer {auth_resp['access_token']}",
         "User-Agent": "ChangeMeClient/0.1 by YourUsername",
     }
-    url = "https://oauth.reddit.com/r/dataengineering/top/?limit=10&t=all"
-    response = requests.get(url, headers=headers)
-    resp_json = response.json()
 
-    producer = EventHubProducerClient.from_connection_string(
-        conn_str=CONNECTION_STR, eventhub_name=EVENTHUB_NAME
-    )
+    after = ""
+    for i in range(5):
+        url = f"https://oauth.reddit.com/r/dataengineering/top/?limit=10&t=all&after={after}"
+        response = requests.get(url, headers=headers)
+        resp_json = response.json()
 
-    async with producer:
-        event_data_batch = await producer.create_batch()
+        after = resp_json["data"]["after"]
 
-        for post in resp_json["data"]["children"]:
-            event_data_batch.add(EventData(str(post)))
+        producer = EventHubProducerClient.from_connection_string(
+            conn_str=CONNECTION_STR, eventhub_name=EVENTHUB_NAME
+        )
 
-        await producer.send_batch(event_data_batch)
+        async with producer:
+            event_data_batch = await producer.create_batch()
+
+            for post in resp_json["data"]["children"]:
+                event_data_batch.add(EventData(str(post)))
+
+            await producer.send_batch(event_data_batch)
+
+        sleep(10)
+
+    while True:
+        continue
 
 
 print("HEJ...")
