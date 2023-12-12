@@ -28,7 +28,8 @@ jobs:
     - name: Azure Container Apps Build and Deploy
       uses: Azure/container-apps-deploy-action@v2
       with:
-        dockerfilePath: ${{ github.workspace }}/lab_2/consumer/Dockerfile
+        appSourcePath: ${{ github.workspace }}/lab_2/producer/
         acrName: oblakcontainer
         containerAppName: consumer
         resourceGroup: fervjestina
+        dockerfilePath: ${{ github.workspace }}/lab_2/consumer/Dockerfile
