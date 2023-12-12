@@ -52,7 +52,7 @@ async def run():
         await producer.send_batch(event_data_batch)
 
 
-print("HEJ!")
+print("HEJ...")
 asyncio.run(run())
 
-print("GOTOV...")
+print("GOTOV!")
