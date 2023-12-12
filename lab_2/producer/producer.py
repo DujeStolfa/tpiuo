@@ -55,4 +55,4 @@ async def run():
 print("HEJ...")
 asyncio.run(run())
 
-print("GOTOVO!!!")
+print("GOTOVO!")
