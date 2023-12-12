@@ -37,7 +37,7 @@ jobs:
       with:
         containerAppName: consumer
         resourceGroup: fervjestina
-        imageToDeploy: lab_2/consumer/Dockerfile
+        imageToDeploy: oblakcontainer.azurecr.io/consumer:v1
         acrName: oblakcontainer
         
         
