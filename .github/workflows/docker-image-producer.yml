@@ -1,4 +1,4 @@
-name: Docker Image CI - consumer
+name: Docker Image CI - producer
 
 on:
   push:
