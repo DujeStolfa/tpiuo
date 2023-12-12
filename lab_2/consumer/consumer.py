@@ -21,19 +21,18 @@ async def on_event(partition_context, event):
         file_system=CONTAINER_NAME
     )
 
-    json_body = event.body_as_json(encoding="UTF-8")
-    for objava in json_body:
-        # Stvori folder
-        dt = datetime.utcfromtimestamp(objava["data"]["created_utc"])
-        new_dir = dt.strftime("%Y/%m/%d/%H/%M")
-        directory_client = file_system_client.create_directory(new_dir)
+    objava = event.body_as_json(encoding="UTF-8")
+    # Stvori folder
+    dt = datetime.utcfromtimestamp(objava["data"]["created_utc"])
+    new_dir = dt.strftime("%Y/%m/%d/%H/%M")
+    directory_client = file_system_client.create_directory(new_dir)
 
-        # Uploadaj podatke
-        file_client = directory_client.get_file_client(f"{objava['data']['name']}.json")
-        file_client.upload_data(str(objava["data"]), overwrite=True)
+    # Uploadaj podatke
+    file_client = directory_client.get_file_client(f"{objava['data']['name']}.json")
+    file_client.upload_data(str(objava["data"]), overwrite=True)
 
-        # Log
-        print(f"Uploaded {objava['data']['title']} to {new_dir}")
+    # Log
+    print(f"Uploaded {objava['data']['title']} to {new_dir}")
 
     await partition_context.update_checkpoint(event)
 
