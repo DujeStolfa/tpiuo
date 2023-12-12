@@ -65,7 +65,7 @@ async def run():
         continue
 
 
-print("HEJ;")
+print("HEJ; :)")
 asyncio.run(run())
 
 print("GOTOVO!")
