@@ -32,4 +32,4 @@ jobs:
         acrName: oblakcontainer
         containerAppName: consumer
         resourceGroup: fervjestina
-        dockerfilePath: ${{ github.workspace }}/lab_2/consumer/Dockerfile
+        dockerfilePath: Dockerfile

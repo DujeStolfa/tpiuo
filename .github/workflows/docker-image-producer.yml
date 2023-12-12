@@ -34,4 +34,4 @@ jobs:
         acrName: oblakcontainer
         containerAppName: producer
         resourceGroup: fervjestina
-        dockerfilePath: ${{ github.workspace }}/lab_2/producer/Dockerfile
+        dockerfilePath: Dockerfile
