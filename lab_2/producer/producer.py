@@ -1,3 +1,4 @@
+import json
 from time import sleep
 import asyncio
 import requests
@@ -53,7 +54,7 @@ async def run():
             event_data_batch = await producer.create_batch()
 
             for post in resp_json["data"]["children"]:
-                event_data_batch.add(EventData(str(post)))
+                event_data_batch.add(EventData(json.dumps(post)))
 
             await producer.send_batch(event_data_batch)
 

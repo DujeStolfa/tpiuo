@@ -30,7 +30,7 @@ async def on_event(partition_context, event):
 
         # Uploadaj podatke
         file_client = directory_client.get_file_client(f"{objava['data']['name']}.json")
-        file_client.upload_data(json.dumps(objava["data"]), overwrite=True)
+        file_client.upload_data(str(objava["data"]), overwrite=True)
 
         # Log
         print(f"Uploaded {objava['data']['title']} to {new_dir}")
