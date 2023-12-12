@@ -1,0 +1,43 @@
+name: Docker Image CI - consumer
+
+on:
+  push:
+    branches: 
+      - "main"
+    paths: 
+      - '**.py'
+jobs:
+  editorconfig:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: editorconfig-checker/action-editorconfig-checker@main
+      - run: editorconfig-checker
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Super-Linter
+      uses: super-linter/super-linter@v5.7.2
+
+  build:
+    needs: [editorconfig, lint]
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Log in to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - name: Azure Container Apps Build and Deploy
+      uses: Azure/container-apps-deploy-action@v2
+      with:
+        containerAppName: producer
+        resourceGroup: fervjestina
+        imageToDeploy: oblakcontainer.azurecr.io/producer:v1
+        acrName: oblakcontainer
+        
+        
