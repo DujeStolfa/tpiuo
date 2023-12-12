@@ -21,7 +21,7 @@ async def on_event(partition_context, event):
         file_system=CONTAINER_NAME
     )
 
-    json_body = json.loads(event.body_as_str(encoding="UTF-8"))
+    json_body = event.body_as_json(encoding="UTF-8")
     for objava in json_body["data"]["children"]:
         # Stvori folder
         dt = datetime.utcfromtimestamp(objava["data"]["created_utc"])
