@@ -8,7 +8,7 @@ from azure.storage.filedatalake import DataLakeServiceClient
 from azure.identity import DefaultAzureCredential
 from azure.eventhub.aio import EventHubConsumerClient
 
-EVENT_HUB_CONNECTION_STR = "Endpoint=sb://oblaknamespace.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=YWxpcnSWBUBVrmGOscXPoLvuA6M0xdyFA+AEhI0CYd0="
+EVENT_HUB_CONNECTION_STR = "Endpoint=sb://oblaknamespace.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=BDV7M9DqVrubNvcQSLRoF2fgUVco3nf+B+AEhMZRX1s="
 EVENT_HUB_NAME = "cleanhub"
 SAS_TOKEN = "KhFURePi7mXz6N/O8lKo8bCokyqH0b8wvRtVroet6QAetYOcJ6R8YgKlGVWaBPHzOOJ7tAPSVyfb+AStYmVwjQ=="
 CONTAINER_NAME = "datacontainer"
@@ -21,7 +21,6 @@ async def on_event(partition_context, event):
         file_system=CONTAINER_NAME
     )
 
-    # objava = event.body_as_json(encoding="UTF-8")
     objava = json.loads(event.body_as_str(encoding="UTF-8"))
 
     # Stvori folder
