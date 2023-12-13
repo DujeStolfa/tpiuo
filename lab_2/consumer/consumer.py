@@ -9,7 +9,7 @@ from azure.identity import DefaultAzureCredential
 from azure.eventhub.aio import EventHubConsumerClient
 
 EVENT_HUB_CONNECTION_STR = "Endpoint=sb://oblaknamespace.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=BDV7M9DqVrubNvcQSLRoF2fgUVco3nf+B+AEhMZRX1s="
-EVENT_HUB_NAME = "cleanhub"
+EVENT_HUB_NAME = "eventhub-clean"
 SAS_TOKEN = "KhFURePi7mXz6N/O8lKo8bCokyqH0b8wvRtVroet6QAetYOcJ6R8YgKlGVWaBPHzOOJ7tAPSVyfb+AStYmVwjQ=="
 CONTAINER_NAME = "datacontainer"
 
