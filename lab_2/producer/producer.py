@@ -8,8 +8,8 @@ from azure.eventhub.aio import EventHubProducerClient
 from azure.eventhub.exceptions import EventHubError
 from azure.eventhub import EventData
 
-CONNECTION_STR = "Endpoint=sb://mostovi.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=ukCi1jQV55q6TksBn9/gwYtOFSzCdu3MV+AEhNDXLX8="
-EVENTHUB_NAME = "mostovi-hub"
+CONNECTION_STR = "Endpoint=sb://oblaknamespace.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=YWxpcnSWBUBVrmGOscXPoLvuA6M0xdyFA+AEhI0CYd0="
+EVENTHUB_NAME = "cleanhub"
 
 
 async def run():
@@ -54,10 +54,14 @@ async def run():
             event_data_batch = await producer.create_batch()
 
             for post in resp_json["data"]["children"]:
-                event_data_batch.add(EventData(json.dumps(post)))
+                print(f"Adding {post['data']['title']} to batch")
+                data = json.dumps(post)
+                event_data_batch.add(EventData(data))
 
+            print("Sending batch")
             await producer.send_batch(event_data_batch)
 
+        print("sleeping")
         sleep(10)
 
     while True:
@@ -65,7 +69,7 @@ async def run():
         continue
 
 
-print("HEJ; :)")
+print("HEJ;")
 asyncio.run(run())
 
 print("GOTOVO!")
