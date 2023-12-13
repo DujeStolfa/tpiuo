@@ -9,7 +9,7 @@ from azure.eventhub.exceptions import EventHubError
 from azure.eventhub import EventData
 
 CONNECTION_STR = "Endpoint=sb://oblaknamespace.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=BDV7M9DqVrubNvcQSLRoF2fgUVco3nf+B+AEhMZRX1s="
-EVENTHUB_NAME = "cleanhub"
+EVENTHUB_NAME = "eventhub-clean"
 
 
 async def run():
